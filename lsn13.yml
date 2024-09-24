@@ -22,7 +22,7 @@
       - { name: "deploy" }
 
 - name: Install packages on build instance
-  hosts: _build
+  hosts: tag_Name_build
   become: yes
   tasks:
     - name: Install git and maven
@@ -33,7 +33,7 @@
         state: present
 
 - name: Install tomcat on deploy instance
-  hosts: _deploy
+  hosts: tag_Name_deploy
   become: yes
   tasks:
     - name: Install tomcat
