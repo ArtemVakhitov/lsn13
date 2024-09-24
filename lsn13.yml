@@ -1,13 +1,6 @@
 ---
 - hosts: localhost
   gather_facts: no
-  vars_files:
-    - secrets.yml
-
-  - name: Set AWS credentials for dynamic inventory
-    set_fact:
-      aws_access_key_id: "{{ aws_access_key_id }}"
-      aws_secret_key: "{{ aws_secret_key }}"
 
   - name: Start instances
     amazon.aws.ec2_instance:
