@@ -7,6 +7,7 @@
     amazon.aws.ec2_instance:
       name: "{{ item }}"
       key_name: user18kp
+      region: us-east-1
       instance_type: t2.micro
       security_group: user18sg
       network_interfaces:
