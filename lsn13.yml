@@ -6,7 +6,7 @@
 
   - name: Launch EC2 instances
     amazon.aws.ec2_instance:
-      name: "{{ item }}"
+      name: "{{ item.name }}"
       key_name: user18kp
       region: us-east-1
       instance_type: t2.micro
@@ -15,9 +15,11 @@
        - assign_public_ip: true
       image_id: ami-0a0e5d9c7acc336f1
       wait: yes
-    with_items:
-      - build
-      - deploy
+      tags:
+          Name: "{{ item.name }}"
+      loop:
+        - { name: "build" }
+        - { name: "deploy" }
 
 - name: Install packages on build instance
   hosts: build
