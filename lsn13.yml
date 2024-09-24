@@ -24,7 +24,7 @@
       - deploy
     register: ec2
 
-- hosts: build
+- hosts: aws_ec2
   become: yes
   tasks:
 
