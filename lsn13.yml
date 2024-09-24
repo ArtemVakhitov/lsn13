@@ -1,13 +1,16 @@
 ---
-- name: Start instances
-  amazon.aws.ec2_instance:
-    name: {{ item }}
-    key_name: user18kp
-    instance_type: t2.micro
-    security_group: user18sg
-    network_interfaces:
-      - assign_public_ip: true
-    image_id: ami-0a0e5d9c7acc336f1
-  with_items:
-    - build
-    - deploy
+- hosts: localhost
+  gather_facts: no
+
+  - name: Start instances
+    amazon.aws.ec2_instance:
+      name: {{ item }}
+      key_name: user18kp
+      instance_type: t2.micro
+      security_group: user18sg
+      network_interfaces:
+       - assign_public_ip: true
+      image_id: ami-0a0e5d9c7acc336f1
+    with_items:
+      - build
+      - deploy
