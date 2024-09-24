@@ -6,7 +6,6 @@
   - name: Start instances
     amazon.aws.ec2_instance:
       name: "{{ item }}"
-      hostname: "{{ item }}"
       key_name: user18kp
       region: us-east-1
       instance_type: t2.micro
