@@ -4,7 +4,11 @@ regions:
   - us-east-1
 
 hostnames:
-  - name: 'tag:Name'
+  - ip_address
+
+groups:
+  build: "'build' in tags.Name"
+  deploy: "'deploy' in tags.Name"
 
 filters:
   instance-state-name: running
