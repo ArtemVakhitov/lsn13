@@ -16,10 +16,10 @@
       image_id: ami-0a0e5d9c7acc336f1
       wait: yes
       tags:
-          Name: "{{ item.name }}"
-      loop:
-        - { name: "build" }
-        - { name: "deploy" }
+        Name: "{{ item.name }}"
+    loop:
+      - { name: "build" }
+      - { name: "deploy" }
 
 - name: Install packages on build instance
   hosts: build
