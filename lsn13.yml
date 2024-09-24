@@ -14,7 +14,8 @@
        - assign_public_ip: true
       image_id: ami-0a0e5d9c7acc336f1
       volumes:
-        - ebs:
+        - device_name: /dev/xvda
+          ebs:
             volume_size: 20
             delete_on_termination: yes
       wait: yes
