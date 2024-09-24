@@ -4,7 +4,7 @@ regions:
   - us-east-1
 
 hostnames:
-  - tag:Name
+  - name: 'tag:Name'
 
 filters:
   instance-state-name: running
