@@ -1,9 +1,10 @@
 ---
-- hosts: localhost
+- name: Create AWS EC2 instances and configure them
+  hosts: localhost
   gather_facts: no
   tasks:
 
-  - name: Start instances
+  - name: Launch EC2 instances
     amazon.aws.ec2_instance:
       name: "{{ item }}"
       key_name: user18kp
@@ -18,14 +19,22 @@
       - build
       - deploy
 
-- hosts: build
+- name: Install packages on build instance
+  hosts: build
   become: yes
   tasks:
+    - name: Install git and maven
+      apt:
+        name:
+          - git
+          - maven
+        state: present
 
-  - name: Provision build
-    apt:
-      name:
-        - git
-        - maven
-      state: present
-      update_cache: true
+- name: Install tomcat on deploy instance
+  hosts: deploy
+  become: yes
+  tasks:
+    - name: Install tomcat
+      apt:
+        name: tomcat
+        state: present
