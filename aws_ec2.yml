@@ -5,6 +5,3 @@ regions:
 
 hostnames:
   - 'tag:Name'
-
-compose:
-  ansible_host: 'tag:Name'
