@@ -16,7 +16,6 @@
       volumes:
         - device_name: /dev/sda
           volume_size: 20
-          delete_on_termination: true
       wait: yes
     with_items:
       - build
