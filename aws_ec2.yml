@@ -6,5 +6,5 @@ regions:
 hostnames:
   - 'tag:Name'
 
-filters:
-  instance-state-name: running
+compose:
+  ansible_host: 'tag:Name'
