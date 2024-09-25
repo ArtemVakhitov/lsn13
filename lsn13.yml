@@ -27,9 +27,9 @@
         instance-state-name: ["pending", "running"]
     register: ec2
 
-  - name: Wait
-    wait_for:
-      timeout: 240
+  # - name: Wait
+  #   wait_for:
+  #     timeout: 240
 
 - name: Provision build host and build app
   hosts: build
