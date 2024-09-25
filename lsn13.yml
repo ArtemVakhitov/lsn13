@@ -19,16 +19,19 @@
     with_items:
       - build
       - deploy
+    register: ec2
+    
+  - name: Wait for SSH connectivity
+    delegate_to: "{{ item.public_ip_address }}"
+    loop: "{{ ec2.instances }}"
+    wait_for_connection:
+      delay: 5
+      timeout: 60
 
 - name: Provision build host and build app
   hosts: build
   become: yes
   tasks:
-
-  - name: Wait for SSH
-    wait_for_connection:
-      delay: 5
-      timeout: 300
 
   - name: Ensure git and maven are installed
     apt:
