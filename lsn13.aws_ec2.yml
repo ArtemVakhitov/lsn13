@@ -2,10 +2,11 @@ plugin: amazon.aws.aws_ec2
 regions:
   - us-east-1
 hostnames:
-  - ip-address
-keyed_groups:
-  - key: tags.Name
-    separator: ''
+  - 'tag:Name'
+#   - ip-address
+# keyed_groups:
+#   - key: tags.Name
+#     separator: ''
 filters:
   instance-state-name : running
 compose:
