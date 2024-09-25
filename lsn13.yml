@@ -26,6 +26,9 @@
         instance-state-name: ["pending", "running"]
     register: ec2
 
+  - name: Refresh inventory to ensure new instance data exist in inventory
+    meta: refresh_inventory
+
   # - name: Wait
   #   wait_for:
   #     timeout: 240
