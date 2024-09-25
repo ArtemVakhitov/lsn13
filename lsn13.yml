@@ -15,6 +15,7 @@
        - assign_public_ip: true
       image_id: ami-0a0e5d9c7acc336f1
       wait: yes
+      state: running
     with_items:
       - build
       - deploy
