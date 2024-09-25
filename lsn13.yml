@@ -29,10 +29,9 @@
 
   - name: Wait for SSH connectivity
     wait_for:
-      host: "{{ item.public_ip_address }}"
+      host: build
       state: started
       port: 22
-    with_items: "{{ ec2.instances }}"
 
 - name: Provision build host and build app
   hosts: build
