@@ -27,11 +27,9 @@
         instance-state-name: ["pending", "running"]
     register: ec2
 
-  - name: Wait for SSH connectivity
+  - name: Wait
     wait_for:
-      host: build
-      state: started
-      port: 22
+      timeout: 240
 
 - name: Provision build host and build app
   hosts: build
