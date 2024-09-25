@@ -29,9 +29,12 @@
   - name: Refresh inventory to ensure new instance data exist in inventory
     meta: refresh_inventory
 
-  # - name: Wait
-  #   wait_for:
-  #     timeout: 240
+  - name: Wait for build to be available by SSH
+    wait_for:
+      host: build
+      port: 22
+      state: started
+      timeout: 240
 
 - name: Provision build host and build app
   hosts: build
