@@ -1,9 +1,10 @@
 ---
-- hosts: localhost
+- name: Create AWS instances
+  hosts: localhost
   gather_facts: no
   tasks:
 
-  - name: Start instances
+  - name: Create instances
     amazon.aws.ec2_instance:
       name: "{{ item }}"
       key_name: user18kp
@@ -18,11 +19,12 @@
       - build
       - deploy
 
-- hosts: build
+- name: Provision build host and build app
+  hosts: build
   become: yes
   tasks:
 
-  - name: Provision build
+  - name: Ensure git and maven are installed
     apt:
       name:
         - git
