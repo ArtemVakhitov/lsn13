@@ -9,5 +9,5 @@ keyed_groups:
 filters:
   instance-state-name : running
 compose:
-  ansible_host: public_ip_address
+  # ansible_host: public_ip_address
   ansible_ssh_common_args: "-o ConnectionAttempts=20"
