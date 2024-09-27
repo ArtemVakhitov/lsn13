@@ -19,22 +19,8 @@
       - build
       - deploy
 
-  # - name: Get instance information
-  #   amazon.aws.ec2_instance_info:
-  #     region: us-east-1
-  #     filters:
-  #       instance-state-name: ["pending", "running"]
-  #   register: ec2
-
   - name: Refresh inventory to ensure new instance data exist in inventory
     meta: refresh_inventory
-
-  # - name: Wait for build to be available by SSH
-  #   wait_for:
-  #     host: build
-  #     port: 22
-  #     state: started
-  #     timeout: 240
 
 - name: Provision build host and build app
   hosts: build
@@ -48,3 +34,48 @@
         - maven
       state: present
       update_cache: true
+
+  - name: Clone app repo
+    git:
+      repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+      dest: /src/boxfuse-sample-java-war-hello
+
+  - name: Build app
+    shell:
+      chdir: /src/boxfuse-sample-java-war-hello
+      cmd: mvn package
+
+  - name: Retrieve build artifact from build
+    fetch:
+      src: /src/boxfuse-sample-java-war-hello/target/hello-1.0.war
+      flat: true
+      dest: /tmp/
+
+- name: Provision deploy host and deploy app
+  hosts: deploy
+  become: yes
+  tasks:
+
+  - name: Ensure Tomcat is installed
+    apt:
+      name: tomcat9
+      state: present
+      update_cache: true
+
+  - name: Ensure Tomcat service is running
+    service:
+      name: tomcat9
+      state: started
+
+  - name: Copy build artifact to deploy
+    copy:
+      src: /tmp/hello-1.0.war
+      dest: /var/lib/tomcat9/webapps/
+    notify: Restart Tomcat
+
+  handlers:
+    name: Restart Tomcat
+    service:
+      name: tomcat9
+      state: restarted
+
