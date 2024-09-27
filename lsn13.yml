@@ -74,7 +74,7 @@
     notify: Restart Tomcat
 
   handlers:
-    name: Restart Tomcat
+  - name: Restart Tomcat
     service:
       name: tomcat9
       state: restarted
