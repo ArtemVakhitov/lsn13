@@ -8,8 +8,8 @@ keyed_groups:
     separator: ''
 filters:
   instance-state-name : running
-aws_access_key: "{{ aws_access_key }}"
-aws_secret_key: "{{ aws_secret_key }}"
+aws_access_key: "{{ lookup('file', '/root/secret1.yml') }}"
+aws_secret_key: "{{ lookup('file', '/root/secret2.yml') }}"
 compose:
   # ansible_host: public_ip_address
   ansible_ssh_common_args: "-o ConnectionAttempts=20"
