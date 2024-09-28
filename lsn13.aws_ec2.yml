@@ -13,3 +13,5 @@ compose:
   ansible_ssh_common_args: "-o ConnectionAttempts=20"
   aws_access_key: "{{ aws_access_key }}"
   aws_secret_key: "{{ aws_secret_key }}"
+  vars_files:
+    - /root/secrets.yml
