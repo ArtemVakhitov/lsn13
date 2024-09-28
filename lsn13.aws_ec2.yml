@@ -8,10 +8,8 @@ keyed_groups:
     separator: ''
 filters:
   instance-state-name : running
+  aws_access_key: "{{ aws_access_key }}"
+  aws_secret_key: "{{ aws_secret_key }}"
 compose:
   # ansible_host: public_ip_address
   ansible_ssh_common_args: "-o ConnectionAttempts=20"
-  aws_access_key_id: "{{ aws_access_key_id }}"
-  aws_secret_access_key: "{{ aws_secret_access_key }}"
-  vars_files:
-    - /root/secrets.yml
