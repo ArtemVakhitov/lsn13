@@ -8,7 +8,9 @@ keyed_groups:
     separator: ''
 filters:
   instance-state-name : running
-aws_profile: default
+# aws_profile: default
+aws_access_key: "<YOUR-AWS-ACCESS-KEY-HERE>"
+aws_secret_key: "<YOUR-AWS-SECRET-KEY-HERE>"
 compose:
   # ansible_host: public_ip_address
   ansible_ssh_common_args: "-o ConnectionAttempts=20"
